@@ -24,10 +24,11 @@
     overflow-x:hidden;-webkit-font-smoothing:antialiased;
     /* halos de gerd molt suaus: donen profunditat perquè el negre no quedi pla */
     background:
-      radial-gradient(1100px 720px at 14% 6%,  rgba(194,50,95,.13), transparent 60%),
-      radial-gradient(900px 640px at 90% 26%,  rgba(194,50,95,.09), transparent 58%),
-      radial-gradient(1000px 700px at 8% 58%,  rgba(194,50,95,.08), transparent 58%),
-      radial-gradient(1100px 760px at 82% 84%, rgba(194,50,95,.10), transparent 60%),
+      repeating-linear-gradient(90deg, rgba(242,239,240,.03) 0 1px, transparent 1px 128px),
+      radial-gradient(1100px 720px at 14% 6%,  rgba(194,50,95,.2), transparent 60%),
+      radial-gradient(900px 640px at 90% 26%,  rgba(194,50,95,.15), transparent 58%),
+      radial-gradient(1000px 700px at 8% 58%,  rgba(194,50,95,.14), transparent 58%),
+      radial-gradient(1100px 760px at 82% 84%, rgba(194,50,95,.17), transparent 60%),
       var(--bg);
     background-attachment:fixed;
   }
@@ -39,7 +40,7 @@
   a{color:inherit;text-decoration:none}
   img{display:block;max-width:100%}
   .wrap{max-width:1160px;margin:0 auto;padding:0 32px}
-  .eyebrow{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);font-weight:600}
+  .eyebrow{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);font-weight:600}
 
   /* ---- PROGRESS BAR ---- */
   .progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:120;transform-origin:0 50%;transform:scaleX(0);
@@ -53,13 +54,13 @@
   nav{position:fixed;top:0;left:0;right:0;z-index:110;padding:20px 0;transition:padding .4s,background .4s}
   nav .bar{max-width:1160px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
   /* logotip: reprodueix el rètol — script en minúscula amb la "a" en gerd */
-  .logo{font-family:'Yellowtail',cursive;font-size:30px;line-height:1;letter-spacing:0;font-weight:400;
+  .logo{font-family:'Yellowtail',cursive;font-size:46px;line-height:1;letter-spacing:0;font-weight:400;
     display:inline-block;color:var(--fg)}
   .logo .a{color:var(--accent)}
   .logo-lockup{display:flex;flex-direction:column;align-items:flex-start;gap:3px}
-  .logo-sub{font-size:8.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .logo-sub{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:500}
   .nav-cta{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(245,239,231,.28);
-    padding:10px 20px;border-radius:999px;font-size:13px;font-weight:500;transition:.3s;backdrop-filter:blur(10px)}
+    padding:13px 26px;border-radius:999px;font-size:14.5px;font-weight:500;transition:.3s;backdrop-filter:blur(10px)}
   .nav-cta:hover{background:var(--accent);border-color:var(--accent);color:#ffffff}
   nav.solid{padding:12px 0;background:rgba(14,13,14,.86);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
 
@@ -74,12 +75,12 @@
                linear-gradient(0deg,var(--bg) 1%,transparent 34%)}
   .hero-inner{position:relative;z-index:2;padding:0 24px 92px;display:flex;flex-direction:column;align-items:center}
   /* portrait card kept at (or below) the source's native width -> stays sharp */
-  .hero-card{position:relative;width:min(320px,62vw);aspect-ratio:3/4;border-radius:4px;overflow:hidden;
+  .hero-card{position:relative;width:min(410px,70vw);aspect-ratio:3/4;border-radius:4px;overflow:hidden;
     box-shadow:0 50px 110px -40px rgba(0,0,0,.9);opacity:0;
     animation:cardIn 1.5s .18s cubic-bezier(.16,1,.3,1) forwards}
   .hero-card img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
   @keyframes cardIn{from{opacity:0;transform:translateY(40px) scale(1.04)}to{opacity:1;transform:none}}
-  .hero h1{font-size:clamp(44px,8.4vw,116px);font-weight:300;letter-spacing:-.035em;text-align:center;
+  .hero h1{font-size:clamp(52px,9.4vw,142px);font-weight:300;letter-spacing:-.035em;text-align:center;
     position:relative;z-index:3;pointer-events:none;mix-blend-mode:normal}
   .hero h1 .line{display:block;overflow:hidden}
   .hero h1 .line span{display:block;transform:translateY(105%);
@@ -93,11 +94,11 @@
   @keyframes riseUp{to{transform:translateY(0)}}
   .hero .kicker{opacity:0;animation:fadeUp .9s .55s cubic-bezier(.16,1,.3,1) forwards;margin-bottom:22px}
   .hero .lede{opacity:0;animation:fadeUp .9s .8s cubic-bezier(.16,1,.3,1) forwards;
-    margin:30px auto 0;max-width:420px;font-size:15.5px;line-height:1.75;color:#cfc8ca;text-align:center}
-  @media (max-width:620px){ .hero-card{width:min(260px,58vw)} .hero .l-top{margin-bottom:-.22em} .hero .l-bot{margin-top:-.26em} }
+    margin:34px auto 0;max-width:520px;font-size:18.5px;line-height:1.75;color:#cfc8ca;text-align:center}
+  @media (max-width:620px){ .hero-card{width:min(310px,68vw)} .hero .l-top{margin-bottom:-.22em} .hero .l-bot{margin-top:-.26em} }
   @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
   .scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:3;
-    display:flex;flex-direction:column;align-items:center;gap:10px;font-size:10.5px;letter-spacing:.22em;
+    display:flex;flex-direction:column;align-items:center;gap:10px;font-size:11.5px;letter-spacing:.22em;
     text-transform:uppercase;color:var(--muted);opacity:0;animation:fadeUp .9s 1.1s forwards}
   .scroll-hint i{width:1px;height:46px;background:linear-gradient(var(--accent),transparent);animation:drop 1.9s ease-in-out infinite}
   @keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}
@@ -113,18 +114,18 @@
   /* filigrana del logotip, molt tènue, per omplir el negre */
   .statement::before{
     content:"nova";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-    font-family:'Yellowtail',cursive;font-size:clamp(260px,34vw,520px);line-height:1;
-    color:var(--fg);opacity:.032;pointer-events:none;white-space:nowrap;user-select:none}
+    font-family:'Yellowtail',cursive;font-size:clamp(310px,41vw,660px);line-height:1;
+    color:var(--fg);opacity:.055;pointer-events:none;white-space:nowrap;user-select:none}
   /* dues fotos que s'esvaeixen als laterals */
-  .st-side{position:absolute;top:50%;transform:translateY(-50%);width:clamp(130px,14vw,190px);
-    aspect-ratio:3/4;border-radius:4px;overflow:hidden;pointer-events:none;opacity:.42;
+  .st-side{position:absolute;top:50%;transform:translateY(-50%);width:clamp(180px,19vw,275px);
+    aspect-ratio:3/4;border-radius:4px;overflow:hidden;pointer-events:none;opacity:.6;
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 55%);mask-image:linear-gradient(90deg,transparent,#000 55%)}
   .st-side img{width:100%;height:100%;object-fit:cover}
-  .st-side.l{left:-30px}
-  .st-side.r{right:-30px;-webkit-mask-image:linear-gradient(270deg,transparent,#000 55%);mask-image:linear-gradient(270deg,transparent,#000 55%)}
-  @media (max-width:1080px){ .st-side{display:none} }
-  .statement p{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,4.2vw,50px);
-    line-height:1.28;max-width:900px;margin:0 auto;letter-spacing:-.02em;position:relative;z-index:2}
+  .st-side.l{left:-85px}
+  .st-side.r{right:-85px;-webkit-mask-image:linear-gradient(270deg,transparent,#000 55%);mask-image:linear-gradient(270deg,transparent,#000 55%)}
+  @media (max-width:1240px){ .st-side{display:none} }
+  .statement p{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(31px,5.1vw,66px);
+    line-height:1.26;max-width:1020px;margin:0 auto;letter-spacing:-.02em;position:relative;z-index:2}
   .statement .w{display:inline-block;opacity:.16;transition:opacity .5s ease}
   .statement .w.lit{opacity:1}
   .statement .w em{font-style:italic;color:var(--accent)}
@@ -133,7 +134,7 @@
   .scrolly{position:relative;background:rgba(20,19,20,.66);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .scrolly-inner{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1160px;margin:0 auto;padding:0 32px}
   .sticky-col{position:sticky;top:0;height:100svh;display:flex;align-items:center;padding:60px 40px 60px 0}
-  .stage{position:relative;width:100%;max-width:400px;margin-left:auto;aspect-ratio:3/4;border-radius:6px;overflow:hidden;
+  .stage{position:relative;width:100%;max-width:520px;margin-left:auto;aspect-ratio:3/4;border-radius:6px;overflow:hidden;
     box-shadow:0 50px 90px -40px rgba(0,0,0,.85)}
   .stage figure{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1.1s cubic-bezier(.16,1,.3,1)}
   .stage figure.on{opacity:1}
@@ -149,11 +150,11 @@
   .step::before{content:"";position:absolute;left:-1px;top:50%;transform:translateY(-50%);width:2px;height:0;
     background:var(--accent);transition:height .8s cubic-bezier(.16,1,.3,1)}
   .step.active::before{height:70px}
-  .step .num{font-family:'Fraunces',serif;font-size:12px;letter-spacing:.2em;color:var(--accent);margin-bottom:18px}
-  .step h2{font-size:clamp(28px,3.6vw,44px);font-weight:400;margin-bottom:18px}
+  .step .num{font-family:'Fraunces',serif;font-size:13.5px;letter-spacing:.2em;color:var(--accent);margin-bottom:18px}
+  .step h2{font-size:clamp(33px,4.3vw,58px);font-weight:400;margin-bottom:18px}
   .step h2 em{font-style:italic;color:var(--accent2)}
-  .step p{color:var(--muted);font-size:16px;line-height:1.8;max-width:420px;margin:0}
-  .step .price{margin-top:22px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);font-weight:600}
+  .step p{color:var(--muted);font-size:18.5px;line-height:1.75;max-width:500px;margin:0}
+  .step .price{margin-top:24px;font-size:13.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);font-weight:600}
   @media (max-width:900px){
     .scrolly-inner{grid-template-columns:1fr}
     .sticky-col{height:56svh;padding:20px 0;top:44px}
@@ -166,23 +167,23 @@
   /* ---- ACT 3: EMOTIONAL BEAT ---- */
   .beat{position:relative;padding:19vh 0;text-align:center;overflow:hidden}
   .beat-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:900px;height:520px;
-    background:radial-gradient(ellipse,var(--accent) 0%,transparent 70%);opacity:.2;filter:blur(28px);pointer-events:none}
-  .beat h2{position:relative;font-size:clamp(28px,4.4vw,54px);font-weight:300;max-width:860px;margin:0 auto 26px;line-height:1.24}
+    background:radial-gradient(ellipse,var(--accent) 0%,transparent 70%);opacity:.28;filter:blur(28px);pointer-events:none}
+  .beat h2{position:relative;font-size:clamp(33px,5.2vw,70px);font-weight:300;max-width:960px;margin:0 auto 30px;line-height:1.24}
   .beat h2 em{font-style:italic;color:var(--accent)}
-  .beat p{position:relative;color:var(--muted);max-width:520px;margin:0 auto;font-size:16px;line-height:1.85}
+  .beat p{position:relative;color:var(--muted);max-width:620px;margin:0 auto;font-size:18.5px;line-height:1.8}
   .beat .tagline{position:relative;margin-top:40px;font-family:'Fraunces',serif;font-style:italic;
-    font-size:18px;color:var(--accent2)}
+    font-size:22px;color:var(--accent2)}
 
   /* ---- ACT 4: HORIZONTAL GALLERY ---- */
   .gal{position:relative;height:320svh;background:rgba(20,19,20,.66);border-top:1px solid var(--line)}
   .gal-sticky{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
   .gal-head{padding:0 32px 34px;max-width:1160px;margin:0 auto;width:100%}
-  .gal-head h2{font-size:clamp(26px,3.6vw,44px);font-weight:400;margin-top:12px}
+  .gal-head h2{font-size:clamp(31px,4.3vw,58px);font-weight:400;margin-top:12px}
   .gal-track{display:flex;gap:22px;padding-left:max(32px,calc((100vw - 1160px)/2 + 32px));will-change:transform}
-  .gal-card{flex:0 0 clamp(230px,26vw,340px);aspect-ratio:3/4;border-radius:6px;overflow:hidden;position:relative;background:var(--panel)}
+  .gal-card{flex:0 0 clamp(290px,31vw,430px);aspect-ratio:3/4;border-radius:6px;overflow:hidden;position:relative;background:var(--panel)}
   .gal-card img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.16,1,.3,1)}
   .gal-card:hover img{transform:scale(1.06)}
-  .gal-card figcaption{position:absolute;left:0;right:0;bottom:0;padding:38px 18px 16px;font-size:12.5px;
+  .gal-card figcaption{position:absolute;left:0;right:0;bottom:0;padding:44px 20px 18px;font-size:14.5px;
     letter-spacing:.05em;font-weight:500;background:linear-gradient(0deg,rgba(10,7,5,.88),transparent)}
   @media (max-width:900px){ .gal{height:auto} .gal-sticky{position:static;height:auto;padding:90px 0}
     .gal-track{overflow-x:auto;padding:0 32px 12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
@@ -192,12 +193,12 @@
   .numbers{padding:15vh 0;position:relative}
   .numbers::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
     width:min(920px,92vw);height:340px;pointer-events:none;
-    background:radial-gradient(ellipse,rgba(194,50,95,.20),transparent 68%);filter:blur(24px)}
+    background:radial-gradient(ellipse,rgba(194,50,95,.3),transparent 68%);filter:blur(24px)}
   .num-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center;position:relative;z-index:2}
   /* filets verticals de separació entre xifres */
   .num-grid > div + div{border-left:1px solid var(--line)}
-  .num-grid .n{font-family:'Fraunces',serif;font-size:clamp(44px,6.6vw,86px);font-weight:300;color:var(--accent);line-height:1}
-  .num-grid .l{color:var(--muted);font-size:13px;margin-top:14px;letter-spacing:.03em}
+  .num-grid .n{font-family:'Fraunces',serif;font-size:clamp(54px,7.8vw,112px);font-weight:300;color:var(--accent);line-height:1}
+  .num-grid .l{color:var(--muted);font-size:15px;margin-top:16px;letter-spacing:.03em}
   @media (max-width:760px){.num-grid{grid-template-columns:1fr;gap:52px}.num-grid > div + div{border-left:none;border-top:1px solid var(--line);padding-top:44px}}
 
   /* ---- ACT 6: CTA ---- */
@@ -206,23 +207,23 @@
   .cta-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:blur(30px) brightness(.3) saturate(.45);transform:scale(1.15)}
   .cta-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg),rgba(16,13,12,.6),var(--bg))}
   .cta-inner{position:relative;z-index:2}
-  .cta h2{font-size:clamp(32px,5.6vw,68px);font-weight:300;margin-bottom:22px}
+  .cta h2{font-size:clamp(38px,6.6vw,88px);font-weight:300;margin-bottom:26px}
   .cta h2 em{font-style:italic;color:var(--accent)}
-  .cta p{color:var(--muted);max-width:420px;margin:0 auto 40px;font-size:16px;line-height:1.75}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:18px 34px;border-radius:999px;
-    font-weight:600;font-size:15px;background:var(--accent);color:#ffffff;transition:.3s}
+  .cta p{color:var(--muted);max-width:520px;margin:0 auto 44px;font-size:18.5px;line-height:1.75}
+  .btn{display:inline-flex;align-items:center;gap:11px;padding:21px 42px;border-radius:999px;
+    font-weight:600;font-size:16.5px;background:var(--accent);color:#ffffff;transition:.3s}
   .btn:hover{background:var(--accent-lt);transform:translateY(-2px)}
   .btn svg{width:19px;height:19px}
 
   /* ---- FOOTER ---- */
   footer{background:#0b0908;padding:88px 0 32px}
   .foot-top{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:44px;padding-bottom:56px;border-bottom:1px solid var(--line)}
-  .foot-brand .logo{font-size:24px}
-  .foot-brand p{color:var(--muted);font-size:14px;margin-top:16px;max-width:250px;line-height:1.75}
-  footer h4{font-size:11px;letter-spacing:.16em;color:var(--accent2);text-transform:uppercase;margin:0 0 16px;font-weight:600}
-  footer p,footer a{font-size:14px;color:var(--muted);line-height:2}
+  .foot-brand .logo{font-size:42px}
+  .foot-brand p{color:var(--muted);font-size:15.5px;margin-top:18px;max-width:290px;line-height:1.75}
+  footer h4{font-size:12px;letter-spacing:.16em;color:var(--accent2);text-transform:uppercase;margin:0 0 16px;font-weight:600}
+  footer p,footer a{font-size:15.5px;color:var(--muted);line-height:2}
   footer a:hover{color:var(--fg)}
-  .foot-bottom{display:flex;justify-content:space-between;padding-top:26px;font-size:12px;color:#6a5d55;flex-wrap:wrap;gap:10px}
+  .foot-bottom{display:flex;justify-content:space-between;padding-top:26px;font-size:13.5px;color:#6a5d55;flex-wrap:wrap;gap:10px}
   @media (max-width:820px){.foot-top{grid-template-columns:1fr 1fr;row-gap:36px}}
 
   /* ---- WHATSAPP FLOAT ---- */
@@ -242,7 +243,7 @@
     transform:translateY(24px) scale(.98);transition:transform .45s cubic-bezier(.16,1,.3,1)}
   .bk-overlay.shown .bk{transform:none}
   .bk-head{position:sticky;top:0;z-index:3;background:var(--panel);padding:24px 26px 16px;border-bottom:1px solid var(--line)}
-  .bk-head .logo{font-size:26px}
+  .bk-head .logo{font-size:38px}
   .bk-close{position:absolute;top:20px;right:20px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
     background:transparent;color:var(--muted);font-size:19px;line-height:1;cursor:pointer;z-index:4}
   .bk-close:hover{color:var(--fg);border-color:var(--fg)}
@@ -322,11 +323,11 @@
 
 <!-- ACT 0 -->
 <header class="hero" id="top">
-  <div class="hero-bg"><img src="img/ig_03_blonde.jpg" alt="" aria-hidden="true"></div>
+  <div class="hero-bg"><img src="img/ig_03_blonde@2x.jpg" alt="" aria-hidden="true"></div>
   <div class="hero-inner">
     <div class="eyebrow kicker">Saló de perruqueria · La Garriga</div>
     <h1 class="l-top"><span class="line"><span>Cada cabell</span></span></h1>
-    <div class="hero-card"><img src="img/ig_03_blonde.jpg" alt="Client de Saló Nova amb balayage ros"></div>
+    <div class="hero-card"><img src="img/ig_03_blonde@2x.jpg" alt="Client de Saló Nova amb balayage ros"></div>
     <h1 class="l-bot"><span class="line"><span>té una <em>història</em></span></span></h1>
     <p class="lede">I la nostra feina és escoltar-la abans d'agafar les tisores.</p>
   </div>
@@ -335,8 +336,8 @@
 
 <!-- ACT 1 -->
 <section class="statement">
-  <div class="st-side l"><img src="img/ig_06_blonde_wave.jpg" alt="" aria-hidden="true"></div>
-  <div class="st-side r"><img src="img/ig_04_blonde_long.jpg" alt="" aria-hidden="true"></div>
+  <div class="st-side l"><img src="img/ig_06_blonde_wave@2x.jpg" alt="" aria-hidden="true"></div>
+  <div class="st-side r"><img src="img/ig_04_blonde_long@2x.jpg" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <p id="litText">A Nova no venem un tall. Acompanyem el moment en què algú es torna a mirar al mirall i <em>somriu</em>.</p>
   </div>
@@ -347,11 +348,11 @@
   <div class="scrolly-inner">
     <div class="sticky-col">
       <div class="stage" id="stage">
-        <figure class="on" data-i="0"><img src="img/ig_08_blonde2.jpg" alt="Consulta personalitzada al saló"></figure>
-        <figure data-i="1"><img src="img/ig_02_bata.jpg" alt="Formulació de color a mida"></figure>
-        <figure data-i="2"><img src="img/ig_06_blonde_wave.jpg" alt="Balayage ros amb ones"></figure>
-        <figure data-i="3"><img src="img/ig_07_product_jar.jpg" alt="Mascareta Gold Vegan eco-vegana"></figure>
-        <figure data-i="4"><img src="img/ig_09_brillo_crop.jpg" alt="Resultat final amb brillantor"></figure>
+        <figure class="on" data-i="0"><img src="img/ig_08_blonde2@2x.jpg" alt="Consulta personalitzada al saló"></figure>
+        <figure data-i="1"><img src="img/ig_02_bata@2x.jpg" alt="Formulació de color a mida"></figure>
+        <figure data-i="2"><img src="img/ig_06_blonde_wave@2x.jpg" alt="Balayage ros amb ones"></figure>
+        <figure data-i="3"><img src="img/ig_07_product_jar@2x.jpg" alt="Mascareta Gold Vegan eco-vegana"></figure>
+        <figure data-i="4"><img src="img/ig_09_brillo_crop@2x.jpg" alt="Resultat final amb brillantor"></figure>
         <div class="stage-num" id="stageNum">01 / 05</div>
       </div>
     </div>
@@ -406,14 +407,14 @@
       <h2 class="rv d1">Treballs reals, del nostre saló</h2>
     </div>
     <div class="gal-track" id="galTrack">
-      <figure class="gal-card"><img src="img/ig_03_blonde.jpg" alt="Balayage ros"><figcaption>Balayage ros</figcaption></figure>
-      <figure class="gal-card"><img src="img/ig_09_brillo_crop.jpg" alt="Brillantor i suavitat"><figcaption>Brillantor &amp; suavitat</figcaption></figure>
-      <figure class="gal-card"><img src="img/ig_02_bata.jpg" alt="Color coure a mida"><figcaption>Coure a mida</figcaption></figure>
-      <figure class="gal-card"><img src="img/ig_05_smile_makeup.jpg" alt="Pentinat d'esdeveniment"><figcaption>Pentinat d'esdeveniment</figcaption></figure>
-      <figure class="gal-card"><img src="img/ig_04_blonde_long.jpg" alt="Cabell llarg amb color"><figcaption>Color &amp; llargada</figcaption></figure>
-      <figure class="gal-card"><img src="img/ig_08_blonde2.jpg" alt="Tall curt amb forma"><figcaption>Tall &amp; forma</figcaption></figure>
-      <figure class="gal-card"><img src="img/ig_10_shoppingbag.jpg" alt="Productes eco per a casa"><figcaption>Cura a casa</figcaption></figure>
-      <figure class="gal-card"><img src="img/ig_06_blonde_wave.jpg" alt="Ones i reflexos"><figcaption>Ones &amp; reflexos</figcaption></figure>
+      <figure class="gal-card"><img src="img/ig_03_blonde@2x.jpg" alt="Balayage ros"><figcaption>Balayage ros</figcaption></figure>
+      <figure class="gal-card"><img src="img/ig_09_brillo_crop@2x.jpg" alt="Brillantor i suavitat"><figcaption>Brillantor &amp; suavitat</figcaption></figure>
+      <figure class="gal-card"><img src="img/ig_02_bata@2x.jpg" alt="Color coure a mida"><figcaption>Coure a mida</figcaption></figure>
+      <figure class="gal-card"><img src="img/ig_05_smile_makeup@2x.jpg" alt="Pentinat d'esdeveniment"><figcaption>Pentinat d'esdeveniment</figcaption></figure>
+      <figure class="gal-card"><img src="img/ig_04_blonde_long@2x.jpg" alt="Cabell llarg amb color"><figcaption>Color &amp; llargada</figcaption></figure>
+      <figure class="gal-card"><img src="img/ig_08_blonde2@2x.jpg" alt="Tall curt amb forma"><figcaption>Tall &amp; forma</figcaption></figure>
+      <figure class="gal-card"><img src="img/ig_10_shoppingbag@2x.jpg" alt="Productes eco per a casa"><figcaption>Cura a casa</figcaption></figure>
+      <figure class="gal-card"><img src="img/ig_06_blonde_wave@2x.jpg" alt="Ones i reflexos"><figcaption>Ones &amp; reflexos</figcaption></figure>
     </div>
   </div>
 </section>
@@ -429,7 +430,7 @@
 
 <!-- ACT 6 -->
 <section class="cta" id="contacte">
-  <div class="cta-bg"><img src="img/ig_01_stylist_crop.jpg" alt="Equip de Saló Nova"></div>
+  <div class="cta-bg"><img src="img/ig_01_stylist_crop@2x.jpg" alt="Equip de Saló Nova"></div>
   <div class="cta-inner wrap">
     <h2 class="rv">Comencem la teva <em>història</em>?</h2>
     <p class="rv d1">Escriu-nos per WhatsApp i et trobem forat aquesta mateixa setmana.</p>
