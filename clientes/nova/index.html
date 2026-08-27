@@ -67,6 +67,8 @@
   /* logotip: reprodueix el rètol — script en minúscula amb la "a" en gerd */
   .logo{font-family:'Yellowtail',cursive;font-size:52px;line-height:1;letter-spacing:0;font-weight:400;
     display:inline-block;color:var(--fg)}
+  nav .logo{opacity:0;transform:translateY(-8px);transition:opacity .45s,transform .45s;pointer-events:none}
+  nav.solid .logo{opacity:1;transform:none;pointer-events:auto}
   .logo .a{color:var(--accent)}
   .logo-lockup{display:flex;flex-direction:column;align-items:flex-start;gap:3px}
   .logo-sub{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:500}
@@ -109,7 +111,12 @@
   .hero .kicker{opacity:0;animation:fadeUp .9s .55s cubic-bezier(.16,1,.3,1) forwards;margin:10px 0 30px}
   .hero .lede{opacity:0;animation:fadeUp .9s .8s cubic-bezier(.16,1,.3,1) forwards;
     margin:34px auto 0;max-width:520px;font-size:18.5px;line-height:1.75;color:#cfc8ca;text-align:center}
-  @media (max-width:620px){ .hero-card{height:clamp(250px,40svh,400px)} }
+  @media (max-width:620px){
+    .hero-card{height:clamp(250px,38svh,400px)}
+    .hero-logo{font-size:clamp(68px,19vw,120px)}
+    .hero .kicker{font-size:10.5px;letter-spacing:.14em;margin:6px 0 24px}
+    nav .logo{font-size:40px}
+  }
   @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
   .scroll-hint{position:relative;z-index:3;margin-top:32px;
     display:flex;flex-direction:column;align-items:center;gap:10px;font-size:11.5px;letter-spacing:.22em;
