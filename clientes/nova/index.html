@@ -2,7 +2,8 @@
 <html lang="ca">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e0d0e">
 <title>Nova — Saló de Perruqueria, La Garriga</title>
 <meta name="description" content="Balayage, rossos i tractaments eco-vegans a La Garriga. Nova, saló de perruqueria.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,22 +19,23 @@
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   ::selection{background:var(--accent);color:#ffffff}
-  html{
-    /* halos de gerd + retícula fina: profunditat perquè el negre no quedi pla */
+  html{background:var(--bg);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  /* Capa de fons fixa com a element propi: 'background-attachment:fixed' es comporta
+     malament a iOS Safari, així que la fem amb un div fix. */
+  .bg-wash{position:fixed;top:0;right:0;bottom:0;left:0;z-index:-2;pointer-events:none;
     background:
       repeating-linear-gradient(90deg, rgba(242,239,240,.028) 0 1px, transparent 1px 128px),
       radial-gradient(1100px 720px at 14% 6%,  rgba(194,50,95,.2), transparent 60%),
       radial-gradient(900px 640px at 90% 26%,  rgba(194,50,95,.15), transparent 58%),
       radial-gradient(1000px 700px at 8% 58%,  rgba(194,50,95,.14), transparent 58%),
-      radial-gradient(1100px 760px at 82% 84%, rgba(194,50,95,.17), transparent 60%),
-      var(--bg);
-    background-attachment:fixed;
-  }
+      radial-gradient(1100px 760px at 82% 84%, rgba(194,50,95,.17), transparent 60%)}
   body{
     margin:0;color:var(--fg);background:transparent;
     font-family:'Inter',system-ui,sans-serif;
     overflow-x:hidden;-webkit-font-smoothing:antialiased;
+    -webkit-tap-highlight-color:transparent;
   }
+  button,a,input,textarea{-webkit-tap-highlight-color:transparent}
   /* "metxes": corbes que suggereixen cabell sense dibuixar-lo. Diuen alguna cosa sense dir res. */
   .strands{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
   .strands g{animation:sway 22s ease-in-out infinite}
@@ -63,7 +65,8 @@
 
   /* ---- NAV ---- */
   nav{position:fixed;top:0;left:0;right:0;z-index:110;padding:20px 0;transition:padding .4s,background .4s}
-  nav .bar{max-width:1160px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
+  nav .bar{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;
+    padding:0 32px;padding-left:calc(32px + env(safe-area-inset-left));padding-right:calc(32px + env(safe-area-inset-right))}
   /* logotip: reprodueix el rètol — script en minúscula amb la "a" en gerd */
   .logo{font-family:'Yellowtail',cursive;font-size:52px;line-height:1;letter-spacing:0;font-weight:400;
     display:inline-block;color:var(--fg)}
@@ -73,12 +76,11 @@
   .logo-lockup{display:flex;flex-direction:column;align-items:flex-start;gap:3px}
   .logo-sub{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:500}
   .nav-cta{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(245,239,231,.28);
-    padding:13px 26px;border-radius:999px;font-size:14.5px;font-weight:500;transition:.3s;backdrop-filter:blur(10px)}
-  .nav-cta:hover{background:var(--accent);border-color:var(--accent);color:#ffffff}
-  nav.solid{padding:12px 0;background:rgba(14,13,14,.86);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    padding:13px 26px;border-radius:999px;font-size:14.5px;font-weight:500;transition:.3s;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+  nav.solid{padding:12px 0;background:rgba(14,13,14,.86);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
 
   /* ---- ACT 0: HERO ---- */
-  .hero{position:relative;height:100svh;min-height:640px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .hero{position:relative;height:100vh;height:100svh;min-height:640px;display:flex;align-items:center;justify-content:center;overflow:hidden}
   /* ambient blurred backdrop — blur is deliberate, so low-res source never shows */
   .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
   /* imatge de reserva: es veu mentre el vídeo carrega o si no pot reproduir-se */
@@ -103,7 +105,7 @@
   .hero-tag{font-size:clamp(24px,3.4vw,46px)!important;font-weight:300;text-align:center;margin-top:6px}
   .hero-tag em{font-style:italic;color:var(--accent)}
   /* portrait card kept at (or below) the source's native width -> stays sharp */
-  .hero-card{position:relative;aspect-ratio:3/4;height:clamp(250px,38svh,460px);width:auto;max-width:72vw;border-radius:4px;overflow:hidden;
+  .hero-card{position:relative;aspect-ratio:3/4;height:clamp(250px,38vh,460px);height:clamp(250px,38svh,460px);width:auto;max-width:72vw;border-radius:4px;overflow:hidden;
     box-shadow:0 50px 110px -40px rgba(0,0,0,.9);opacity:0;
     animation:cardIn 1.5s .18s cubic-bezier(.16,1,.3,1) forwards}
   .hero-card img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
@@ -120,7 +122,7 @@
   .hero .lede{opacity:0;animation:fadeUp .9s .8s cubic-bezier(.16,1,.3,1) forwards;
     margin:34px auto 0;max-width:520px;font-size:18.5px;line-height:1.75;color:#cfc8ca;text-align:center}
   @media (max-width:620px){
-    .hero-card{height:clamp(250px,38svh,400px)}
+    .hero-card{height:clamp(250px,38vh,400px);height:clamp(250px,38svh,400px)}
     .hero-logo{font-size:clamp(68px,19vw,120px)}
     .hero .kicker{font-size:10.5px;letter-spacing:.14em;margin:6px 0 24px}
     nav .logo{font-size:40px}
@@ -162,7 +164,7 @@
   /* ---- ACT 2: STICKY SCROLLYTELLING ---- */
   .scrolly{position:relative;background:rgba(20,19,20,.52);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .scrolly-inner{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1160px;margin:0 auto;padding:0 32px}
-  .sticky-col{position:sticky;top:0;height:100svh;display:flex;align-items:center;padding:60px 40px 60px 0}
+  .sticky-col{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;padding:60px 40px 60px 0}
   .stage{position:relative;width:100%;max-width:520px;margin-left:auto;aspect-ratio:3/4;border-radius:6px;overflow:hidden;
     box-shadow:0 50px 90px -40px rgba(0,0,0,.85)}
   .stage figure{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1.1s cubic-bezier(.16,1,.3,1)}
@@ -173,7 +175,7 @@
   .stage-num{position:absolute;left:20px;bottom:18px;z-index:4;font-family:'Fraunces',serif;font-size:13px;
     letter-spacing:.16em;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.8)}
   .steps-col{padding:12vh 0}
-  .step{min-height:82svh;display:flex;flex-direction:column;justify-content:center;padding:40px 0 40px 40px;
+  .step{min-height:82vh;min-height:82svh;display:flex;flex-direction:column;justify-content:center;padding:40px 0 40px 40px;
     border-left:1px solid var(--line);position:relative;opacity:.28;transition:opacity .7s}
   .step.active{opacity:1}
   .step::before{content:"";position:absolute;left:-1px;top:50%;transform:translateY(-50%);width:2px;height:0;
@@ -186,7 +188,7 @@
   .step .price{margin-top:24px;font-size:13.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);font-weight:600}
   @media (max-width:900px){
     .scrolly-inner{grid-template-columns:1fr}
-    .sticky-col{height:56svh;padding:20px 0;top:44px}
+    .sticky-col{height:56vh;height:56svh;padding:20px 0;top:44px}
     .stage{aspect-ratio:16/11}
     .steps-col{padding:0 0 10vh}
     .step{min-height:auto;padding:34px 0 34px 24px;opacity:1}
@@ -204,14 +206,13 @@
     font-size:22px;color:var(--accent2)}
 
   /* ---- ACT 4: HORIZONTAL GALLERY ---- */
-  .gal{position:relative;height:320svh;background:rgba(20,19,20,.52);border-top:1px solid var(--line)}
-  .gal-sticky{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+  .gal{position:relative;height:320vh;height:320svh;background:rgba(20,19,20,.52);border-top:1px solid var(--line)}
+  .gal-sticky{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
   .gal-head{padding:0 32px 34px;max-width:1160px;margin:0 auto;width:100%}
   .gal-head h2{font-size:clamp(31px,4.3vw,58px);font-weight:400;margin-top:12px}
   .gal-track{display:flex;gap:22px;padding-left:max(32px,calc((100vw - 1160px)/2 + 32px));will-change:transform}
   .gal-card{flex:0 0 clamp(290px,31vw,430px);aspect-ratio:3/4;border-radius:6px;overflow:hidden;position:relative;background:var(--panel)}
   .gal-card img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.16,1,.3,1)}
-  .gal-card:hover img{transform:scale(1.06)}
   .gal-card figcaption{position:absolute;left:0;right:0;bottom:0;padding:44px 20px 18px;font-size:14.5px;
     letter-spacing:.05em;font-weight:500;background:linear-gradient(0deg,rgba(10,7,5,.88),transparent)}
   @media (max-width:900px){ .gal{height:auto} .gal-sticky{position:static;height:auto;padding:90px 0}
@@ -241,7 +242,6 @@
   .cta p{color:var(--muted);max-width:520px;margin:0 auto 44px;font-size:18.5px;line-height:1.75}
   .btn{display:inline-flex;align-items:center;gap:11px;padding:21px 42px;border-radius:999px;
     font-weight:600;font-size:16.5px;background:var(--accent);color:#ffffff;transition:.3s}
-  .btn:hover{background:var(--accent-lt);transform:translateY(-2px)}
   .btn svg{width:19px;height:19px}
 
   /* ---- FOOTER ---- */
@@ -251,23 +251,25 @@
   .foot-brand p{color:var(--muted);font-size:15.5px;margin-top:18px;max-width:290px;line-height:1.75}
   footer h4{font-size:12px;letter-spacing:.16em;color:var(--accent2);text-transform:uppercase;margin:0 0 16px;font-weight:600}
   footer p,footer a{font-size:15.5px;color:var(--muted);line-height:2}
-  footer a:hover{color:var(--fg)}
   .foot-bottom{display:flex;justify-content:space-between;padding-top:26px;font-size:13.5px;color:#6a5d55;flex-wrap:wrap;gap:10px}
   @media (max-width:820px){.foot-top{grid-template-columns:1fr 1fr;row-gap:36px}}
 
   /* ---- WHATSAPP FLOAT ---- */
-  .wa{position:fixed;right:22px;bottom:22px;z-index:115;width:58px;height:58px;border-radius:50%;
+  .wa{position:fixed;right:22px;bottom:22px;
+    right:calc(22px + env(safe-area-inset-right));bottom:calc(22px + env(safe-area-inset-bottom));z-index:115;width:58px;height:58px;border-radius:50%;
     background:var(--accent);color:#ffffff;display:flex;align-items:center;justify-content:center;
     box-shadow:0 16px 34px -10px rgba(194,50,95,.75);opacity:0;transform:scale(.6);transition:.45s cubic-bezier(.16,1,.3,1)}
   .wa.show{opacity:1;transform:scale(1)}
   .wa svg{width:26px;height:26px}
 
   /* ---- BOOKING MODAL ---- */
-  .bk-overlay{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:20px;
-    background:rgba(6,5,6,.78);backdrop-filter:blur(10px);opacity:0;transition:opacity .35s}
+  .bk-overlay{position:fixed;top:0;right:0;bottom:0;left:0;z-index:200;display:none;align-items:center;justify-content:center;
+    padding:20px;padding-top:calc(20px + env(safe-area-inset-top));padding-bottom:calc(20px + env(safe-area-inset-bottom));
+    background:rgba(6,5,6,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);opacity:0;transition:opacity .35s}
   .bk-overlay.open{display:flex}
   .bk-overlay.shown{opacity:1}
-  .bk{width:100%;max-width:560px;max-height:92svh;overflow-y:auto;background:var(--panel);
+  .bk{width:100%;max-width:560px;max-height:92vh;max-height:92svh;overflow-y:auto;
+    overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:var(--panel);
     border:1px solid var(--line);border-radius:14px;padding:0;position:relative;
     transform:translateY(24px) scale(.98);transition:transform .45s cubic-bezier(.16,1,.3,1)}
   .bk-overlay.shown .bk{transform:none}
@@ -275,7 +277,6 @@
   .bk-head .logo{font-size:38px}
   .bk-close{position:absolute;top:20px;right:20px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
     background:transparent;color:var(--muted);font-size:19px;line-height:1;cursor:pointer;z-index:4}
-  .bk-close:hover{color:var(--fg);border-color:var(--fg)}
   .bk-prog{display:flex;gap:6px;margin-top:16px}
   .bk-prog i{flex:1;height:3px;border-radius:2px;background:var(--line);transition:background .4s}
   .bk-prog i.on{background:var(--accent)}
@@ -289,14 +290,12 @@
   .bk-opt{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;
     padding:15px 17px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--fg);
     font-family:inherit;font-size:14.5px;cursor:pointer;transition:.25s}
-  .bk-opt:hover{border-color:var(--accent-lt)}
   .bk-opt.sel{border-color:var(--accent);background:rgba(194,50,95,.12)}
   .bk-opt .meta{font-size:12px;color:var(--muted);white-space:nowrap}
   .bk-opt.sel .meta{color:var(--accent-lt)}
   .bk-days{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:9px}
   .bk-day{padding:12px 6px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--fg);
     font-family:inherit;cursor:pointer;text-align:center;transition:.25s}
-  .bk-day:hover{border-color:var(--accent-lt)}
   .bk-day.sel{border-color:var(--accent);background:rgba(194,50,95,.12)}
   .bk-day .dw{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
   .bk-day.sel .dw{color:var(--accent-lt)}
@@ -305,14 +304,15 @@
   .bk-slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px}
   .bk-slot{padding:11px 4px;border-radius:9px;border:1px solid var(--line);background:transparent;color:var(--fg);
     font-family:inherit;font-size:14px;cursor:pointer;transition:.25s}
-  .bk-slot:hover{border-color:var(--accent-lt)}
   .bk-slot.sel{border-color:var(--accent);background:rgba(194,50,95,.12);color:var(--accent-lt);font-weight:600}
   .bk-slotlabel{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);margin:16px 0 9px}
   .bk-slotlabel:first-child{margin-top:0}
   .bk-field{margin-bottom:14px}
   .bk-field label{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  /* 16px mínim: amb menys, iOS fa zoom automàtic en enfocar el camp */
   .bk-field input,.bk-field textarea{width:100%;padding:13px 15px;border-radius:10px;border:1px solid var(--line);
-    background:var(--bg);color:var(--fg);font-family:inherit;font-size:15px;transition:.25s}
+    background:var(--bg);color:var(--fg);font-family:inherit;font-size:16px;transition:.25s;
+    -webkit-appearance:none;appearance:none}
   .bk-field input:focus,.bk-field textarea:focus{outline:none;border-color:var(--accent)}
   .bk-field textarea{resize:vertical;min-height:72px}
   .bk-summary{border:1px solid var(--line);border-radius:11px;padding:18px 19px;margin-bottom:18px;background:var(--bg)}
@@ -323,15 +323,28 @@
   .bk-note{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0 0 18px}
   .bk-actions{display:flex;gap:10px;align-items:center;margin-top:22px}
   .bk-back{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13.5px;cursor:pointer;padding:10px 4px}
-  .bk-back:hover{color:var(--fg)}
   .bk-next{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 24px;
     border-radius:999px;border:none;background:var(--accent);color:#fff;font-family:inherit;font-weight:600;
     font-size:14.5px;cursor:pointer;transition:.25s}
-  .bk-next:hover:not(:disabled){background:var(--accent-lt)}
   .bk-next:disabled{opacity:.34;cursor:not-allowed}
   .bk-next svg{width:18px;height:18px}
   .bk-empty{font-size:13.5px;color:var(--muted);padding:14px 0}
   @media (max-width:520px){ .bk-body{padding:20px 18px 22px} .bk-head{padding:20px 18px 14px} }
+
+
+  /* Els estats hover només on hi ha ratolí: a tàctil es quedarien enganxats */
+  @media (hover:hover) and (pointer:fine){
+  .nav-cta:hover{background:var(--accent);border-color:var(--accent);color:#ffffff}
+  .gal-card:hover img{transform:scale(1.06)}
+  .btn:hover{background:var(--accent-lt);transform:translateY(-2px)}
+  footer a:hover{color:var(--fg)}
+  .bk-close:hover{color:var(--fg);border-color:var(--fg)}
+  .bk-opt:hover{border-color:var(--accent-lt)}
+  .bk-day:hover{border-color:var(--accent-lt)}
+  .bk-slot:hover{border-color:var(--accent-lt)}
+  .bk-back:hover{color:var(--fg)}
+  .bk-next:hover:not(:disabled){background:var(--accent-lt)}
+  }
 
   @media (prefers-reduced-motion:reduce){
     *{animation-duration:.01ms!important;transition-duration:.01ms!important}
@@ -340,6 +353,8 @@
 </style>
 </head>
 <body>
+
+<div class="bg-wash" aria-hidden="true"></div>
 
 <svg class="strands" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true" focusable="false">
   <defs>
@@ -377,7 +392,9 @@
     <img src="img/ig_03_blonde@2x.jpg" alt="" aria-hidden="true">
     <video class="hero-video" id="heroVideo" src="video/reel.mp4"
            data-in="4.3" data-out="7.05"
-           muted playsinline autoplay loop preload="auto" aria-hidden="true" tabindex="-1"></video>
+           muted playsinline webkit-playsinline autoplay loop preload="auto"
+           disablepictureinpicture disableremoteplayback
+           aria-hidden="true" tabindex="-1"></video>
   </div>
   <div class="hero-inner">
     <div class="hero-logo">nov<span class="a">a</span></div>
@@ -692,7 +709,10 @@
     const IN = parseFloat(hv.dataset.in) || 0;
     const OUT = parseFloat(hv.dataset.out) || 0;
     const jump = ()=>{ try{ hv.currentTime = IN; }catch(e){} };
-    hv.addEventListener('loadedmetadata', ()=>{ jump(); hv.classList.add('on'); });
+    hv.addEventListener('loadedmetadata', jump);
+    // només el mostrem quan realment es reprodueix: si iOS bloqueja l'autoplay
+    // (mode de baix consum, estalvi de dades) es queda la imatge de reserva
+    hv.addEventListener('playing', ()=> hv.classList.add('on'));
     hv.addEventListener('timeupdate', ()=>{
       if(OUT && (hv.currentTime >= OUT || hv.currentTime < IN - .3)) jump();
     });
@@ -700,7 +720,12 @@
     const tryPlay = ()=> hv.play().catch(()=>{});
     hv.addEventListener('canplay', tryPlay);
     tryPlay();
-    if(reduced){ hv.pause(); hv.classList.add('on'); }
+    if(reduced){ hv.pause(); hv.addEventListener('loadeddata', ()=>hv.classList.add('on'),{once:true}); }
+    // amb estalvi de dades actiu, ni el baixem
+    const con = navigator.connection;
+    if(con && (con.saveData || /^(slow-)?2g$/.test(con.effectiveType||''))){
+      hv.removeAttribute('autoplay'); hv.pause(); hv.removeAttribute('src'); hv.load();
+    }
     // no malgastis bateria quan no es veu
     document.addEventListener('visibilitychange', ()=>{
       if(document.hidden) hv.pause(); else if(!reduced) tryPlay();
