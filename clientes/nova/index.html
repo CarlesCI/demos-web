@@ -622,6 +622,13 @@
   const DAYS_CA = ['Diumenge','Dilluns','Dimarts','Dimecres','Dijous','Divendres','Dissabte'];
   const DW_CA   = ['dg','dl','dt','dc','dj','dv','ds'];
   const MON_CA  = ['gen','feb','març','abr','maig','juny','jul','ago','set','oct','nov','des'];
+  const MON_FULL = ['gener','febrer','març','abril','maig','juny','juliol','agost','setembre','octubre','novembre','desembre'];
+  // "de gener" però "d'agost": apostrofem davant de vocal
+  const dateLong = d => {
+    const m = MON_FULL[d.getMonth()];
+    const prep = /^[aeiouh]/i.test(m) ? "d'" : 'de ';
+    return `${DAYS_CA[d.getDay()]} ${d.getDate()} ${prep}${m}`;
+  };
 
   const ov = document.getElementById('bkOverlay');
   if(!ov) return;
@@ -683,12 +690,12 @@
     elSlots.innerHTML='';
     if(!pick.date) return;
     const ranges = HOURS[pick.date.getDay()] || [];
-    elDayLabel.textContent = `${DAYS_CA[pick.date.getDay()]} ${pick.date.getDate()} de ${MON_CA[pick.date.getMonth()]}`;
+    elDayLabel.textContent = dateLong(pick.date);
     if(!ranges.length){ elSlots.innerHTML = '<p class="bk-empty">Aquest dia el saló està tancat.</p>'; return; }
     ranges.forEach((r,ri)=>{
       const lab = document.createElement('div');
       lab.className='bk-slotlabel';
-      lab.textContent = ri===0 ? 'Matí' : 'Tarda';
+      lab.textContent = ranges.length===1 ? 'Horari' : (ri===0 ? 'Matí' : 'Tarda');
       elSlots.appendChild(lab);
       const grid = document.createElement('div');
       grid.className='bk-slots';
@@ -708,7 +715,7 @@
 
   function buildSummary(){
     const d = pick.date;
-    const dateTxt = d ? `${DAYS_CA[d.getDay()]} ${d.getDate()} de ${MON_CA[d.getMonth()]}` : '—';
+    const dateTxt = d ? dateLong(d) : '—';
     elSummary.innerHTML =
       `<div class="r"><span class="k">Servei</span><span class="v">${pick.service||'—'}</span></div>`+
       `<div class="r"><span class="k">Dia</span><span class="v">${dateTxt}</span></div>`+
@@ -742,7 +749,7 @@
 
   function send(){
     const d = pick.date;
-    const dateTxt = `${DAYS_CA[d.getDay()]} ${d.getDate()} de ${MON_CA[d.getMonth()]} de ${d.getFullYear()}`;
+    const dateTxt = `${dateLong(d)} de ${d.getFullYear()}`;
     const notes = inNotes.value.trim();
     const msg =
       `Hola! Voldria demanar cita al saló.\n\n`+
