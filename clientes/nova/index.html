@@ -329,7 +329,15 @@
   .bk-next:disabled{opacity:.34;cursor:not-allowed}
   .bk-next svg{width:18px;height:18px}
   .bk-empty{font-size:13.5px;color:var(--muted);padding:14px 0}
-  @media (max-width:520px){ .bk-body{padding:20px 18px 22px} .bk-head{padding:20px 18px 14px} }
+  @media (max-width:520px){
+    .bk-body{padding:20px 18px 22px} .bk-head{padding:20px 18px 14px}
+    /* nom i preu un sota l'altre: en horitzontal no hi caben */
+    .bk-opt{flex-direction:column;align-items:flex-start;gap:5px;padding:14px 16px}
+    .bk-opt .meta{white-space:normal}
+    /* 44px minim de zona tactil */
+    .bk-slot{padding:13px 4px}
+    .bk-next{padding:16px 24px}
+  }
 
 
   /* Els estats hover només on hi ha ratolí: a tàctil es quedarien enganxats */
