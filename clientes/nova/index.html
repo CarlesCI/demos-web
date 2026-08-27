@@ -206,6 +206,77 @@
   .wa.show{opacity:1;transform:scale(1)}
   .wa svg{width:26px;height:26px}
 
+  /* ---- BOOKING MODAL ---- */
+  .bk-overlay{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:20px;
+    background:rgba(6,5,6,.78);backdrop-filter:blur(10px);opacity:0;transition:opacity .35s}
+  .bk-overlay.open{display:flex}
+  .bk-overlay.shown{opacity:1}
+  .bk{width:100%;max-width:560px;max-height:92svh;overflow-y:auto;background:var(--panel);
+    border:1px solid var(--line);border-radius:14px;padding:0;position:relative;
+    transform:translateY(24px) scale(.98);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+  .bk-overlay.shown .bk{transform:none}
+  .bk-head{position:sticky;top:0;z-index:3;background:var(--panel);padding:24px 26px 16px;border-bottom:1px solid var(--line)}
+  .bk-head .logo{font-size:26px}
+  .bk-close{position:absolute;top:20px;right:20px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
+    background:transparent;color:var(--muted);font-size:19px;line-height:1;cursor:pointer;z-index:4}
+  .bk-close:hover{color:var(--fg);border-color:var(--fg)}
+  .bk-prog{display:flex;gap:6px;margin-top:16px}
+  .bk-prog i{flex:1;height:3px;border-radius:2px;background:var(--line);transition:background .4s}
+  .bk-prog i.on{background:var(--accent)}
+  .bk-body{padding:24px 26px 26px}
+  .bk-step{display:none}
+  .bk-step.on{display:block;animation:bkIn .45s cubic-bezier(.16,1,.3,1)}
+  @keyframes bkIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .bk-q{font-family:'Fraunces',serif;font-size:23px;font-weight:400;margin:0 0 4px}
+  .bk-hint{font-size:13px;color:var(--muted);margin:0 0 20px}
+  .bk-opts{display:grid;gap:9px}
+  .bk-opt{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;
+    padding:15px 17px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--fg);
+    font-family:inherit;font-size:14.5px;cursor:pointer;transition:.25s}
+  .bk-opt:hover{border-color:var(--accent-lt)}
+  .bk-opt.sel{border-color:var(--accent);background:rgba(194,50,95,.12)}
+  .bk-opt .meta{font-size:12px;color:var(--muted);white-space:nowrap}
+  .bk-opt.sel .meta{color:var(--accent-lt)}
+  .bk-days{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:9px}
+  .bk-day{padding:12px 6px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--fg);
+    font-family:inherit;cursor:pointer;text-align:center;transition:.25s}
+  .bk-day:hover{border-color:var(--accent-lt)}
+  .bk-day.sel{border-color:var(--accent);background:rgba(194,50,95,.12)}
+  .bk-day .dw{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .bk-day.sel .dw{color:var(--accent-lt)}
+  .bk-day .dn{font-family:'Fraunces',serif;font-size:20px;margin-top:3px}
+  .bk-day .dm{font-size:10.5px;color:var(--muted);margin-top:1px}
+  .bk-slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px}
+  .bk-slot{padding:11px 4px;border-radius:9px;border:1px solid var(--line);background:transparent;color:var(--fg);
+    font-family:inherit;font-size:14px;cursor:pointer;transition:.25s}
+  .bk-slot:hover{border-color:var(--accent-lt)}
+  .bk-slot.sel{border-color:var(--accent);background:rgba(194,50,95,.12);color:var(--accent-lt);font-weight:600}
+  .bk-slotlabel{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);margin:16px 0 9px}
+  .bk-slotlabel:first-child{margin-top:0}
+  .bk-field{margin-bottom:14px}
+  .bk-field label{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  .bk-field input,.bk-field textarea{width:100%;padding:13px 15px;border-radius:10px;border:1px solid var(--line);
+    background:var(--bg);color:var(--fg);font-family:inherit;font-size:15px;transition:.25s}
+  .bk-field input:focus,.bk-field textarea:focus{outline:none;border-color:var(--accent)}
+  .bk-field textarea{resize:vertical;min-height:72px}
+  .bk-summary{border:1px solid var(--line);border-radius:11px;padding:18px 19px;margin-bottom:18px;background:var(--bg)}
+  .bk-summary .r{display:flex;justify-content:space-between;gap:14px;padding:8px 0;font-size:14px;border-bottom:1px solid var(--line)}
+  .bk-summary .r:last-child{border-bottom:none}
+  .bk-summary .k{color:var(--muted)}
+  .bk-summary .v{text-align:right;font-weight:500}
+  .bk-note{font-size:12.5px;color:var(--muted);line-height:1.65;margin:0 0 18px}
+  .bk-actions{display:flex;gap:10px;align-items:center;margin-top:22px}
+  .bk-back{background:none;border:none;color:var(--muted);font-family:inherit;font-size:13.5px;cursor:pointer;padding:10px 4px}
+  .bk-back:hover{color:var(--fg)}
+  .bk-next{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 24px;
+    border-radius:999px;border:none;background:var(--accent);color:#fff;font-family:inherit;font-weight:600;
+    font-size:14.5px;cursor:pointer;transition:.25s}
+  .bk-next:hover:not(:disabled){background:var(--accent-lt)}
+  .bk-next:disabled{opacity:.34;cursor:not-allowed}
+  .bk-next svg{width:18px;height:18px}
+  .bk-empty{font-size:13.5px;color:var(--muted);padding:14px 0}
+  @media (max-width:520px){ .bk-body{padding:20px 18px 22px} .bk-head{padding:20px 18px 14px} }
+
   @media (prefers-reduced-motion:reduce){
     *{animation-duration:.01ms!important;transition-duration:.01ms!important}
     .rv{opacity:1;transform:none} .statement .w{opacity:1} .step{opacity:1}
@@ -380,6 +451,61 @@
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.42 2 11.86c0 2.02.6 3.9 1.63 5.48L2 22l4.85-1.55A10.1 10.1 0 0 0 12 21.72c5.52 0 10-4.42 10-9.86S17.52 2 12 2Zm0 17.9c-1.7 0-3.3-.47-4.66-1.28l-.33-.2-3.05.97.99-2.95-.22-.34a8.14 8.14 0 0 1-1.28-4.34C2.45 6.98 6.7 3.98 12 3.98s9.55 3 9.55 7.88-4.25 7.94-9.55 7.94Z"/><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.27-.1-.46-.15-.66.15-.2.3-.75.95-.92 1.14-.17.2-.34.22-.63.08-.3-.15-1.24-.46-2.37-1.47-.87-.78-1.47-1.74-1.64-2.03-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5h-.56c-.19 0-.52.08-.8.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.2 5.08 4.5.71.3 1.26.48 1.7.62.71.22 1.36.19 1.87.12.57-.09 1.7-.7 1.94-1.37.24-.68.24-1.26.17-1.37-.07-.12-.27-.2-.57-.34Z"/></svg>
 </a>
 
+<!-- ---- BOOKING MODAL ---- -->
+<div class="bk-overlay" id="bkOverlay" role="dialog" aria-modal="true" aria-labelledby="bkQ1" hidden>
+  <div class="bk" id="bk">
+    <button class="bk-close" id="bkClose" aria-label="Tancar">&times;</button>
+    <div class="bk-head">
+      <div class="logo">nov<span class="a">a</span></div>
+      <div class="bk-prog" id="bkProg"><i class="on"></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="bk-body">
+
+      <section class="bk-step on" data-s="0">
+        <h3 class="bk-q" id="bkQ1">Quin servei vols?</h3>
+        <p class="bk-hint">Tria el que més s'hi acosti — ja ho acabarem de perfilar al saló.</p>
+        <div class="bk-opts" id="bkServices"></div>
+      </section>
+
+      <section class="bk-step" data-s="1">
+        <h3 class="bk-q">Quin dia et va bé?</h3>
+        <p class="bk-hint">Obrim de dimarts a dissabte.</p>
+        <div class="bk-days" id="bkDays"></div>
+      </section>
+
+      <section class="bk-step" data-s="2">
+        <h3 class="bk-q">A quina hora?</h3>
+        <p class="bk-hint" id="bkDayLabel"></p>
+        <div id="bkSlots"></div>
+      </section>
+
+      <section class="bk-step" data-s="3">
+        <h3 class="bk-q">Les teves dades</h3>
+        <p class="bk-hint">Per confirmar-te la cita.</p>
+        <div class="bk-summary" id="bkSummary"></div>
+        <div class="bk-field">
+          <label for="bkName">Nom</label>
+          <input type="text" id="bkName" autocomplete="name" placeholder="El teu nom">
+        </div>
+        <div class="bk-field">
+          <label for="bkPhone">Telèfon</label>
+          <input type="tel" id="bkPhone" autocomplete="tel" placeholder="600 00 00 00">
+        </div>
+        <div class="bk-field">
+          <label for="bkNotes">Alguna cosa que hàgim de saber? (opcional)</label>
+          <textarea id="bkNotes" placeholder="Al·lèrgies, color actual, si vens amb pressa..."></textarea>
+        </div>
+        <p class="bk-note">En prémer el botó s'obrirà el WhatsApp del saló amb la petició ja escrita. Et respondrem confirmant la cita.</p>
+      </section>
+
+      <div class="bk-actions">
+        <button class="bk-back" id="bkBack" hidden>← Enrere</button>
+        <button class="bk-next" id="bkNext" disabled>Continuar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -476,6 +602,189 @@
       prog.style.transform = `scaleX(${max > 0 ? y/max : 0})`;
     }
   },{passive:true});
+
+  /* ================= BOOKING ================= */
+  const PHONE = '34633883217';
+  // Horari real del saló. 0=dg, 1=dl ... 6=ds. Franges en minuts des de mitjanit.
+  const HOURS = {
+    2:[[540,780],[900,1170]], 3:[[540,780],[900,1170]],
+    4:[[540,780],[900,1170]], 5:[[540,780],[900,1170]],
+    6:[[540,900]]
+  };
+  const SERVICES = [
+    {n:'Balayage o metxes',      m:'des de 65 € · 2h30'},
+    {n:'Color',                  m:'des de 45 € · 1h30'},
+    {n:'Tall i pentinat',        m:'des de 25 € · 45 min'},
+    {n:'Tractament eco-vegà',    m:'des de 30 € · 1h'},
+    {n:'Pentinat de núvia',      m:'des de 45 € · amb prova'},
+    {n:'Cura capil·lar oncològica', m:'consulta sense compromís'}
+  ];
+  const DAYS_CA = ['Diumenge','Dilluns','Dimarts','Dimecres','Dijous','Divendres','Dissabte'];
+  const DW_CA   = ['dg','dl','dt','dc','dj','dv','ds'];
+  const MON_CA  = ['gen','feb','març','abr','maig','juny','jul','ago','set','oct','nov','des'];
+
+  const ov = document.getElementById('bkOverlay');
+  if(!ov) return;
+  const bkSteps = [...ov.querySelectorAll('.bk-step')];
+  const progEls = [...document.getElementById('bkProg').children];
+  const elServices = document.getElementById('bkServices');
+  const elDays = document.getElementById('bkDays');
+  const elSlots = document.getElementById('bkSlots');
+  const elDayLabel = document.getElementById('bkDayLabel');
+  const elSummary = document.getElementById('bkSummary');
+  const btnNext = document.getElementById('bkNext');
+  const btnBack = document.getElementById('bkBack');
+  const inName = document.getElementById('bkName');
+  const inPhone = document.getElementById('bkPhone');
+  const inNotes = document.getElementById('bkNotes');
+
+  let step = 0;
+  const pick = {service:null, date:null, time:null};
+  let lastFocus = null;
+
+  const pad = n => String(n).padStart(2,'0');
+  const hhmm = m => pad(Math.floor(m/60))+':'+pad(m%60);
+
+  function buildServices(){
+    elServices.innerHTML = '';
+    SERVICES.forEach(s=>{
+      const b = document.createElement('button');
+      b.type='button'; b.className='bk-opt';
+      b.innerHTML = `<span>${s.n}</span><span class="meta">${s.m}</span>`;
+      b.addEventListener('click',()=>{
+        pick.service = s.n;
+        elServices.querySelectorAll('.bk-opt').forEach(x=>x.classList.remove('sel'));
+        b.classList.add('sel'); refresh();
+      });
+      elServices.appendChild(b);
+    });
+  }
+
+  function buildDays(){
+    elDays.innerHTML='';
+    const today = new Date(); today.setHours(0,0,0,0);
+    let added=0;
+    for(let i=1; i<=30 && added<12; i++){
+      const d = new Date(today); d.setDate(today.getDate()+i);
+      if(!HOURS[d.getDay()]) continue;
+      const b = document.createElement('button');
+      b.type='button'; b.className='bk-day';
+      b.innerHTML = `<div class="dw">${DW_CA[d.getDay()]}</div><div class="dn">${d.getDate()}</div><div class="dm">${MON_CA[d.getMonth()]}</div>`;
+      b.addEventListener('click',()=>{
+        pick.date = d; pick.time = null;
+        elDays.querySelectorAll('.bk-day').forEach(x=>x.classList.remove('sel'));
+        b.classList.add('sel'); refresh();
+      });
+      elDays.appendChild(b); added++;
+    }
+  }
+
+  function buildSlots(){
+    elSlots.innerHTML='';
+    if(!pick.date) return;
+    const ranges = HOURS[pick.date.getDay()] || [];
+    elDayLabel.textContent = `${DAYS_CA[pick.date.getDay()]} ${pick.date.getDate()} de ${MON_CA[pick.date.getMonth()]}`;
+    if(!ranges.length){ elSlots.innerHTML = '<p class="bk-empty">Aquest dia el saló està tancat.</p>'; return; }
+    ranges.forEach((r,ri)=>{
+      const lab = document.createElement('div');
+      lab.className='bk-slotlabel';
+      lab.textContent = ri===0 ? 'Matí' : 'Tarda';
+      elSlots.appendChild(lab);
+      const grid = document.createElement('div');
+      grid.className='bk-slots';
+      for(let m=r[0]; m<r[1]; m+=30){
+        const b=document.createElement('button');
+        b.type='button'; b.className='bk-slot'; b.textContent=hhmm(m);
+        b.addEventListener('click',()=>{
+          pick.time = hhmm(m);
+          elSlots.querySelectorAll('.bk-slot').forEach(x=>x.classList.remove('sel'));
+          b.classList.add('sel'); refresh();
+        });
+        grid.appendChild(b);
+      }
+      elSlots.appendChild(grid);
+    });
+  }
+
+  function buildSummary(){
+    const d = pick.date;
+    const dateTxt = d ? `${DAYS_CA[d.getDay()]} ${d.getDate()} de ${MON_CA[d.getMonth()]}` : '—';
+    elSummary.innerHTML =
+      `<div class="r"><span class="k">Servei</span><span class="v">${pick.service||'—'}</span></div>`+
+      `<div class="r"><span class="k">Dia</span><span class="v">${dateTxt}</span></div>`+
+      `<div class="r"><span class="k">Hora</span><span class="v">${pick.time||'—'}</span></div>`;
+  }
+
+  function canAdvance(){
+    if(step===0) return !!pick.service;
+    if(step===1) return !!pick.date;
+    if(step===2) return !!pick.time;
+    return inName.value.trim().length>1 && inPhone.value.replace(/\D/g,'').length>=9;
+  }
+
+  function refresh(){
+    bkSteps.forEach(s=>s.classList.toggle('on', +s.dataset.s===step));
+    progEls.forEach((p,i)=>p.classList.toggle('on', i<=step));
+    btnBack.hidden = step===0;
+    btnNext.disabled = !canAdvance();
+    btnNext.innerHTML = step===3
+      ? `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.42 2 11.86c0 2.02.6 3.9 1.63 5.48L2 22l4.85-1.55A10.1 10.1 0 0 0 12 21.72c5.52 0 10-4.42 10-9.86S17.52 2 12 2Zm0 17.9c-1.7 0-3.3-.47-4.66-1.28l-.33-.2-3.05.97.99-2.95-.22-.34a8.14 8.14 0 0 1-1.28-4.34C2.45 6.98 6.7 3.98 12 3.98s9.55 3 9.55 7.88-4.25 7.94-9.55 7.94Z"/></svg> Enviar la petició`
+      : 'Continuar';
+  }
+
+  function go(n){
+    step = Math.max(0, Math.min(3, n));
+    if(step===2) buildSlots();
+    if(step===3) buildSummary();
+    refresh();
+    ov.querySelector('.bk').scrollTop = 0;
+  }
+
+  function send(){
+    const d = pick.date;
+    const dateTxt = `${DAYS_CA[d.getDay()]} ${d.getDate()} de ${MON_CA[d.getMonth()]} de ${d.getFullYear()}`;
+    const notes = inNotes.value.trim();
+    const msg =
+      `Hola! Voldria demanar cita al saló.\n\n`+
+      `• Servei: ${pick.service}\n`+
+      `• Dia: ${dateTxt}\n`+
+      `• Hora: ${pick.time}\n`+
+      `• Nom: ${inName.value.trim()}\n`+
+      `• Telèfon: ${inPhone.value.trim()}`+
+      (notes ? `\n• Notes: ${notes}` : '')+
+      `\n\nGràcies!`;
+    window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  }
+
+  function open(){
+    lastFocus = document.activeElement;
+    ov.hidden = false; ov.classList.add('open');
+    requestAnimationFrame(()=>ov.classList.add('shown'));
+    document.body.style.overflow='hidden';
+    go(0);
+    setTimeout(()=>ov.querySelector('.bk-opt')?.focus(), 120);
+  }
+  function close(){
+    ov.classList.remove('shown');
+    setTimeout(()=>{ ov.classList.remove('open'); ov.hidden = true; }, 340);
+    document.body.style.overflow='';
+    lastFocus?.focus();
+  }
+
+  buildServices(); buildDays();
+
+  btnNext.addEventListener('click', ()=>{ if(!canAdvance()) return; step===3 ? send() : go(step+1); });
+  btnBack.addEventListener('click', ()=>go(step-1));
+  document.getElementById('bkClose').addEventListener('click', close);
+  ov.addEventListener('click', e=>{ if(e.target===ov) close(); });
+  addEventListener('keydown', e=>{ if(e.key==='Escape' && ov.classList.contains('open')) close(); });
+  [inName,inPhone].forEach(i=>i.addEventListener('input', refresh));
+
+  // Tots els botons "demanar cita" obren el flux en lloc d'anar directes a WhatsApp
+  document.querySelectorAll('a[href*="wa.me"]').forEach(a=>{
+    if(a.closest('footer')) return;             // al footer, enllaç directe
+    a.addEventListener('click', e=>{ e.preventDefault(); open(); });
+  });
 })();
 </script>
 </body>
