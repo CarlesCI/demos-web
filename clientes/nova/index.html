@@ -19,12 +19,20 @@
   html{scroll-behavior:smooth}
   ::selection{background:var(--accent);color:#ffffff}
   body{
-    margin:0;background:var(--bg);color:var(--fg);
+    margin:0;color:var(--fg);
     font-family:'Inter',system-ui,sans-serif;
     overflow-x:hidden;-webkit-font-smoothing:antialiased;
+    /* halos de gerd molt suaus: donen profunditat perquè el negre no quedi pla */
+    background:
+      radial-gradient(1100px 720px at 14% 6%,  rgba(194,50,95,.13), transparent 60%),
+      radial-gradient(900px 640px at 90% 26%,  rgba(194,50,95,.09), transparent 58%),
+      radial-gradient(1000px 700px at 8% 58%,  rgba(194,50,95,.08), transparent 58%),
+      radial-gradient(1100px 760px at 82% 84%, rgba(194,50,95,.10), transparent 60%),
+      var(--bg);
+    background-attachment:fixed;
   }
   body::after{
-    content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.045;mix-blend-mode:overlay;
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.06;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;font-weight:400;margin:0;letter-spacing:-.015em;line-height:1.08}
@@ -101,15 +109,28 @@
   .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
 
   /* ---- ACT 1: INTRO STATEMENT ---- */
-  .statement{padding:26vh 0 22vh;text-align:center}
+  .statement{padding:20vh 0 18vh;text-align:center;position:relative;overflow:hidden}
+  /* filigrana del logotip, molt tènue, per omplir el negre */
+  .statement::before{
+    content:"nova";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    font-family:'Yellowtail',cursive;font-size:clamp(260px,34vw,520px);line-height:1;
+    color:var(--fg);opacity:.032;pointer-events:none;white-space:nowrap;user-select:none}
+  /* dues fotos que s'esvaeixen als laterals */
+  .st-side{position:absolute;top:50%;transform:translateY(-50%);width:clamp(130px,14vw,190px);
+    aspect-ratio:3/4;border-radius:4px;overflow:hidden;pointer-events:none;opacity:.42;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 55%);mask-image:linear-gradient(90deg,transparent,#000 55%)}
+  .st-side img{width:100%;height:100%;object-fit:cover}
+  .st-side.l{left:-30px}
+  .st-side.r{right:-30px;-webkit-mask-image:linear-gradient(270deg,transparent,#000 55%);mask-image:linear-gradient(270deg,transparent,#000 55%)}
+  @media (max-width:1080px){ .st-side{display:none} }
   .statement p{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,4.2vw,50px);
-    line-height:1.28;max-width:900px;margin:0 auto;letter-spacing:-.02em}
+    line-height:1.28;max-width:900px;margin:0 auto;letter-spacing:-.02em;position:relative;z-index:2}
   .statement .w{display:inline-block;opacity:.16;transition:opacity .5s ease}
   .statement .w.lit{opacity:1}
   .statement .w em{font-style:italic;color:var(--accent)}
 
   /* ---- ACT 2: STICKY SCROLLYTELLING ---- */
-  .scrolly{position:relative;background:var(--bg-warm);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .scrolly{position:relative;background:rgba(20,19,20,.66);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .scrolly-inner{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1160px;margin:0 auto;padding:0 32px}
   .sticky-col{position:sticky;top:0;height:100svh;display:flex;align-items:center;padding:60px 40px 60px 0}
   .stage{position:relative;width:100%;max-width:400px;margin-left:auto;aspect-ratio:3/4;border-radius:6px;overflow:hidden;
@@ -143,9 +164,9 @@
   }
 
   /* ---- ACT 3: EMOTIONAL BEAT ---- */
-  .beat{position:relative;padding:24vh 0;text-align:center;overflow:hidden}
+  .beat{position:relative;padding:19vh 0;text-align:center;overflow:hidden}
   .beat-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:900px;height:520px;
-    background:radial-gradient(ellipse,var(--accent) 0%,transparent 70%);opacity:.14;filter:blur(28px);pointer-events:none}
+    background:radial-gradient(ellipse,var(--accent) 0%,transparent 70%);opacity:.2;filter:blur(28px);pointer-events:none}
   .beat h2{position:relative;font-size:clamp(28px,4.4vw,54px);font-weight:300;max-width:860px;margin:0 auto 26px;line-height:1.24}
   .beat h2 em{font-style:italic;color:var(--accent)}
   .beat p{position:relative;color:var(--muted);max-width:520px;margin:0 auto;font-size:16px;line-height:1.85}
@@ -153,7 +174,7 @@
     font-size:18px;color:var(--accent2)}
 
   /* ---- ACT 4: HORIZONTAL GALLERY ---- */
-  .gal{position:relative;height:320svh;background:var(--bg-warm);border-top:1px solid var(--line)}
+  .gal{position:relative;height:320svh;background:rgba(20,19,20,.66);border-top:1px solid var(--line)}
   .gal-sticky{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
   .gal-head{padding:0 32px 34px;max-width:1160px;margin:0 auto;width:100%}
   .gal-head h2{font-size:clamp(26px,3.6vw,44px);font-weight:400;margin-top:12px}
@@ -168,11 +189,16 @@
     .gal-card{scroll-snap-align:start} }
 
   /* ---- ACT 5: NUMBERS ---- */
-  .numbers{padding:20vh 0}
-  .num-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center}
+  .numbers{padding:15vh 0;position:relative}
+  .numbers::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:min(920px,92vw);height:340px;pointer-events:none;
+    background:radial-gradient(ellipse,rgba(194,50,95,.20),transparent 68%);filter:blur(24px)}
+  .num-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center;position:relative;z-index:2}
+  /* filets verticals de separació entre xifres */
+  .num-grid > div + div{border-left:1px solid var(--line)}
   .num-grid .n{font-family:'Fraunces',serif;font-size:clamp(44px,6.6vw,86px);font-weight:300;color:var(--accent);line-height:1}
   .num-grid .l{color:var(--muted);font-size:13px;margin-top:14px;letter-spacing:.03em}
-  @media (max-width:760px){.num-grid{grid-template-columns:1fr;gap:52px}}
+  @media (max-width:760px){.num-grid{grid-template-columns:1fr;gap:52px}.num-grid > div + div{border-left:none;border-top:1px solid var(--line);padding-top:44px}}
 
   /* ---- ACT 6: CTA ---- */
   .cta{position:relative;padding:22vh 0;text-align:center;overflow:hidden;border-top:1px solid var(--line)}
@@ -309,6 +335,8 @@
 
 <!-- ACT 1 -->
 <section class="statement">
+  <div class="st-side l"><img src="img/ig_06_blonde_wave.jpg" alt="" aria-hidden="true"></div>
+  <div class="st-side r"><img src="img/ig_04_blonde_long.jpg" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <p id="litText">A Nova no venem un tall. Acompanyem el moment en què algú es torna a mirar al mirall i <em>somriu</em>.</p>
   </div>
