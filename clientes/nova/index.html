@@ -86,14 +86,14 @@
     transform:scale(1.25);filter:blur(46px) brightness(.34) saturate(.4)}
   /* mini-vídeo en bucle: el reel del saló aplicant color */
   .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-    object-position:center 62%;opacity:0;transition:opacity 1.4s ease;
-    filter:brightness(.46) saturate(1.05) contrast(1.04);
+    object-position:center 54%;opacity:0;transition:opacity 1.4s ease;
+    filter:brightness(.62) saturate(1.12) contrast(1.06);
     transform:scale(1.06);animation:heroZoom 26s ease-in-out infinite alternate}
   .hero-video.on{opacity:1}
   @keyframes heroZoom{from{transform:scale(1.06)}to{transform:scale(1.16)}}
   .hero-bg::after{content:"";position:absolute;inset:0;z-index:2;
-    background:radial-gradient(ellipse at 50% 42%,rgba(14,13,14,.34) 0%,rgba(14,13,14,.8) 74%),
-               linear-gradient(0deg,var(--bg) 1%,transparent 38%)}
+    background:radial-gradient(ellipse at 50% 44%,rgba(14,13,14,.2) 0%,rgba(14,13,14,.72) 76%),
+               linear-gradient(0deg,var(--bg) 1%,transparent 34%)}
   .hero-inner{position:relative;z-index:2;padding:0 24px;display:flex;flex-direction:column;align-items:center}
   /* la marca és el primer que es veu */
   .hero-logo{font-family:'Yellowtail',cursive;font-size:clamp(84px,14vw,210px);line-height:.92;
