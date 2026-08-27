@@ -81,18 +81,26 @@
   .hero{position:relative;height:100svh;min-height:640px;display:flex;align-items:center;justify-content:center;overflow:hidden}
   /* ambient blurred backdrop — blur is deliberate, so low-res source never shows */
   .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
-  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 26%;
+  /* imatge de reserva: es veu mentre el vídeo carrega o si no pot reproduir-se */
+  .hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 26%;
     transform:scale(1.25);filter:blur(46px) brightness(.34) saturate(.4)}
-  .hero-bg::after{content:"";position:absolute;inset:0;
-    background:radial-gradient(ellipse at 50% 45%,transparent 8%,rgba(14,13,14,.66) 72%),
-               linear-gradient(0deg,var(--bg) 1%,transparent 34%)}
+  /* mini-vídeo en bucle: el reel del saló aplicant color */
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    object-position:center 62%;opacity:0;transition:opacity 1.4s ease;
+    filter:brightness(.46) saturate(1.05) contrast(1.04);
+    transform:scale(1.06);animation:heroZoom 26s ease-in-out infinite alternate}
+  .hero-video.on{opacity:1}
+  @keyframes heroZoom{from{transform:scale(1.06)}to{transform:scale(1.16)}}
+  .hero-bg::after{content:"";position:absolute;inset:0;z-index:2;
+    background:radial-gradient(ellipse at 50% 42%,rgba(14,13,14,.34) 0%,rgba(14,13,14,.8) 74%),
+               linear-gradient(0deg,var(--bg) 1%,transparent 38%)}
   .hero-inner{position:relative;z-index:2;padding:0 24px;display:flex;flex-direction:column;align-items:center}
   /* la marca és el primer que es veu */
   .hero-logo{font-family:'Yellowtail',cursive;font-size:clamp(84px,14vw,210px);line-height:.92;
     color:var(--fg);text-shadow:0 0 70px rgba(194,50,95,.55),0 8px 50px rgba(0,0,0,.7);
     opacity:0;animation:fadeUp 1.2s .1s cubic-bezier(.16,1,.3,1) forwards}
   .hero-logo .a{color:var(--accent);text-shadow:0 0 60px rgba(194,50,95,.9)}
-  .hero-tag{font-size:clamp(22px,3vw,40px)!important;font-weight:300;text-align:center;margin-top:26px}
+  .hero-tag{font-size:clamp(24px,3.4vw,46px)!important;font-weight:300;text-align:center;margin-top:6px}
   .hero-tag em{font-style:italic;color:var(--accent)}
   /* portrait card kept at (or below) the source's native width -> stays sharp */
   .hero-card{position:relative;aspect-ratio:3/4;height:clamp(250px,38svh,460px);width:auto;max-width:72vw;border-radius:4px;overflow:hidden;
@@ -365,11 +373,15 @@
 
 <!-- ACT 0 -->
 <header class="hero" id="top">
-  <div class="hero-bg"><img src="img/ig_03_blonde@2x.jpg" alt="" aria-hidden="true"></div>
+  <div class="hero-bg">
+    <img src="img/ig_03_blonde@2x.jpg" alt="" aria-hidden="true">
+    <video class="hero-video" id="heroVideo" src="video/reel.mp4"
+           data-in="4.2" data-out="7.4"
+           muted playsinline autoplay loop preload="auto" aria-hidden="true" tabindex="-1"></video>
+  </div>
   <div class="hero-inner">
     <div class="hero-logo">nov<span class="a">a</span></div>
     <div class="eyebrow kicker">Saló de perruqueria · La Garriga</div>
-    <div class="hero-card"><img src="img/ig_03_blonde@2x.jpg" alt="Client de Saló Nova amb balayage ros"></div>
     <h1 class="hero-tag"><span class="line"><span>Cada cabell té una <em>història</em></span></span></h1>
     <p class="lede">I la nostra feina és escoltar-la abans d'agafar les tisores.</p>
     <div class="scroll-hint"><span>Desplaça't</span><i></i></div>
@@ -673,6 +685,31 @@
       prog.style.transform = `scaleX(${max > 0 ? y/max : 0})`;
     }
   },{passive:true});
+
+  /* ---- mini-vídeo del banner: repeteix només el tram net del reel ---- */
+  const hv = document.getElementById('heroVideo');
+  if(hv){
+    const IN = parseFloat(hv.dataset.in) || 0;
+    const OUT = parseFloat(hv.dataset.out) || 0;
+    const jump = ()=>{ try{ hv.currentTime = IN; }catch(e){} };
+    hv.addEventListener('loadedmetadata', ()=>{ jump(); hv.classList.add('on'); });
+    hv.addEventListener('timeupdate', ()=>{
+      if(OUT && (hv.currentTime >= OUT || hv.currentTime < IN - .3)) jump();
+    });
+    // si el navegador bloqueja l'autoplay, es queda la imatge de reserva
+    const tryPlay = ()=> hv.play().catch(()=>{});
+    hv.addEventListener('canplay', tryPlay);
+    tryPlay();
+    if(reduced){ hv.pause(); hv.classList.add('on'); }
+    // no malgastis bateria quan no es veu
+    document.addEventListener('visibilitychange', ()=>{
+      if(document.hidden) hv.pause(); else if(!reduced) tryPlay();
+    });
+    const hio = new IntersectionObserver(es=>{
+      es.forEach(e=>{ if(e.isIntersecting && !reduced) tryPlay(); else hv.pause(); });
+    },{threshold:.05});
+    hio.observe(document.querySelector('.hero'));
+  }
 
   /* ================= BOOKING ================= */
   const PHONE = '34633883217';
